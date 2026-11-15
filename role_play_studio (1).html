@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Role-Play Studio: Plan, Practice, Perform</title>
+<style>
+:root{--bg:#fff9f0;--card:#fff;--ink:#212529;--mut:#5f6770;--line:#e3ddd2;--hd:#1e3a5f;--acc:#d9480f;--a:#d63f7d;--b:#2b6cb0;--ok:#2f9e44;--warn:#b45309;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a22;--card:#1d2631;--ink:#eef1f5;--mut:#a9b4c0;--line:#33404f;--hd:#223349;--acc:#ff8a4c;--a:#f27aa8;--b:#7ab4f0;--ok:#5cc272;--warn:#f0b35a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141a22;--card:#1d2631;--ink:#eef1f5;--mut:#a9b4c0;--line:#33404f;--hd:#223349;--acc:#ff8a4c;--a:#f27aa8;--b:#7ab4f0;--ok:#5cc272;--warn:#f0b35a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:0 14px 40px}
+header{background:var(--hd);color:#fff;margin:0 -14px;padding:18px 18px 14px}
+h1{margin:0;font-size:26px}h2{font-size:20px;margin:18px 0 6px}h3{font-size:16px;margin:0 0 4px}
+header p{margin:4px 0 0;color:#d3e0f2;font-size:14px}
+.steps{display:flex;gap:6px;margin:14px 0}.steps button{flex:1;padding:9px 4px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;font:600 13px inherit;cursor:pointer}
+.steps button.on{background:var(--acc);border-color:var(--acc);color:#fff}.steps button.done{border-color:var(--ok)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;margin:10px 0}
+.sit{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:11px 12px;margin:7px 0;font:inherit;cursor:pointer}
+.sit.on{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent)}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:2px 9px;margin-right:6px;color:#fff;background:var(--b)}.tag.Informal{background:#2f9e44}.tag.Polite{background:#1c7ed6}.tag.Formal{background:#6741d9}
+input[type=text],textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:9px 11px;font:inherit;background:var(--bg);color:var(--ink)}
+textarea{resize:vertical;min-height:58px}textarea:focus,input:focus{outline:3px solid color-mix(in srgb,var(--acc) 45%,transparent);border-color:var(--acc)}
+.slot{border-left:6px solid var(--a);padding-left:10px;margin:12px 0}.slot.B{border-color:var(--b)}
+.who{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;color:#fff;font-weight:800;margin-right:6px;background:var(--a)}.B .who{background:var(--b)}
+.slot .ck{float:right;color:var(--ok);font-weight:800;visibility:hidden}.slot.full .ck{visibility:visible}
+.hint{font-size:13px;color:var(--mut);margin:3px 0 0}.warn{color:var(--warn)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.tabs button{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 11px;font:600 13px inherit;cursor:pointer}.tabs button.on{background:var(--hd);color:#fff;border-color:var(--hd)}
+.st{display:inline-block;margin:5px 4px;padding:7px 12px;border-radius:14px;font-weight:600;font-size:15px;cursor:grab;user-select:none;border:2px dashed var(--acc);background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--ink);transform:rotate(var(--r,0deg));transition:transform .15s}
+.st:hover,.st:active{transform:rotate(0) scale(1.06)}.st.pop{animation:pop .3s}@keyframes pop{50%{transform:scale(1.18)}}
+.slot.need{background:color-mix(in srgb,var(--warn) 14%,transparent);border-radius:10px}h3.warn{color:var(--warn)}
+.tray{max-height:38vh;overflow:auto;position:sticky;bottom:0;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px;margin-top:12px}
+.row{display:flex;gap:10px;margin-top:14px}.row button,.btn{flex:1;padding:12px;border-radius:12px;border:2px solid var(--hd);background:var(--card);color:var(--ink);font:700 15px inherit;cursor:pointer}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}button:disabled{opacity:.45;cursor:not-allowed}
+.bub{max-width:88%;padding:9px 12px;border-radius:16px;margin:7px 0;cursor:pointer;border:2px solid transparent;color:#fff;background:var(--a)}.bub.B{margin-left:auto;background:var(--b)}
+.bub.cur{border-color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.25)}.bub.read{opacity:.5}.bub small{display:block;font-weight:700;opacity:.9}
+.bar{height:12px;background:var(--line);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);transition:width .3s}.bar.over i{background:var(--warn)}
+label.ck2{display:flex;gap:10px;align-items:flex-start;padding:7px 0;cursor:pointer}label.ck2 input{width:22px;height:22px;margin-top:2px;accent-color:var(--ok)}
+.opts{display:flex;gap:6px;margin:6px 0 10px}.opts button{flex:1;padding:9px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:600 14px inherit;cursor:pointer}.opts button.on{background:var(--ok);border-color:var(--ok);color:#fff}
+pre{white-space:pre-wrap;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px;font:14px/1.5 inherit}
+</style></head><body><main><header><h1>🎬 Role-Play Studio</h1><p>Plan it. Practice it. Then record it with your phone.</p><p>This page does not record anything. Your video is your own work.</p></header><div id="app"></div></main>
+<script>
+const SITS=[["A close friend wins first place in a school speech contest.","Informal"],["A classmate shows a new drawing made for art class.","Informal"],["Your English teacher has just been appointed head of the department.","Polite"],["A friend posts a photo of her certificate after passing a science olympiad.","Informal"],["An exchange student from another country presents her hometown in class.","Polite"],["Your cousin has been accepted to the university she wanted.","Informal"],["Your school basketball team loses, but your friend played very well.","Informal"],["The principal congratulates your class for winning the school cleanliness award, and you respond.","Formal"]];
+const K={inf:[0,1,3,5,6],frm:[2,4,7]};
+const NAME={inf:"Informal situation",frm:"Polite or formal situation"};
+const SL=[["open","A","Start (optional)","Speaker A shares the news or shows something.",1],["core","B","Say it","Speaker B congratulates or gives the first compliment. This is the core act.",0],["ext","B","Add more","Speaker B adds a detail, a reason, or a question. This is the extension.",0],["resp","A","Reply","Speaker A answers. Say thanks, share the credit, or return the compliment.",0],["close","B","Close","Speaker B ends with a good wish or a plan.",0]];
+const CAT={open:["open"],core:["cong","comp"],ext:["ext"],resp:["resp"],close:["wish"]};
+const CN={open:"News",cong:"Congratulate",comp:"Compliment",ext:"Add more",resp:"Reply",wish:"Wish"};
+const ST={inf:{open:["Guess what?","I’m so excited!","Look at this!","Check this out!"],cong:["Congrats!","Well done!","Great job!","I’m so happy for you!"],comp:["You were awesome!","Nice work!","That looks so cool!","I really like your…"],ext:["You worked so hard.","How long did it take?","You really deserve it!","You were so confident."],resp:["Thanks!","Really? Thanks!","Thanks, yours was great, too!","My friends helped me a lot."],wish:["Good luck!","Let’s celebrate!","Enjoy it!","Let’s do it again soon!"]},
+frm:{open:["Good morning. May I come in?","Excuse me, I have some good news.","Good afternoon, Sir.","Good afternoon, Ma’am."],cong:["Congratulations on…!","That’s wonderful news!","I would like to congratulate you on…","I’m so happy for you!"],comp:["Your … was truly impressive.","I really like your…","What a great …!","You did a wonderful job."],ext:["You have always been helpful.","We believe you will do a wonderful job.","The … was so clear. How did you do it?","You really deserve it."],resp:["Thank you very much.","Thank you, that’s kind of you.","I really appreciate that.","My group helped me a lot."],wish:["Good luck with…!","Best wishes for…","Please keep up the good work.","Thank you for your time."]}};
+const CHK=["I read both scripts aloud at least once.","I will record in a quiet place.","I will hold my phone sideways.","Everyone in the video said yes to being filmed.","Both parts together are under 2 minutes.","I will not show personal details like an address or a phone number."];
+const QS=["Is the social function clear? Can you tell it is congratulating or complimenting?","Are the structure and the extension complete? Is there a main message, more details, a reply, and a closing?","Do the expressions and the level of formality fit the situation?"];
+const blank=()=>({open:"",core:"",ext:"",resp:"",close:""});
+let S;
+S=fresh();
+try{const x=JSON.parse(localStorage.getItem("rps1")||"null");if(x&&x.sc)S=Object.assign(S,x)}catch(e){}
+const save=()=>{try{localStorage.setItem("rps1",JSON.stringify(S))}catch(e){}};
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pstat=()=>chosen("inf")&&chosen("frm")?"✓ Both situations are chosen. You can go to the next step.":!chosen("inf")&&!chosen("frm")?"Choose one informal and one polite or formal situation (2 to go).":!chosen("inf")?"Now choose an informal situation (1 to go).":"Now choose a polite or formal situation (1 to go).";
+const own=k=>S.own[k].trim().length>7;
+const chosen=k=>S.pick[k]==="own"?own(k):S.pick[k]!==null;
+const sitText=k=>S.pick[k]==="own"?S.own[k].trim():S.pick[k]!==null?SITS[S.pick[k]][0]:"";
+const sitLvl=k=>S.pick[k]==="own"?"Your own":S.pick[k]!==null?SITS[S.pick[k]][1]:"";
+const need=k=>SL.filter(s=>!s[4]&&!S.sc[k][s[0]].trim()).map(s=>s[2]);
+const full=k=>need(k).length===0;
+const words=k=>Object.values(S.sc[k]).join(" ").trim().split(/\s+/).filter(Boolean).length;
+const secs=()=>Math.round((words("inf")+words("frm"))/2.2);
+function hint(k,t){if(k==="frm"&&/\b(congrats|awesome|gonna|wanna|cool|guys)\b/i.test(t))return"This sounds very casual here. Try “Congratulations on…” or “That’s wonderful news!”";if(k==="inf"&&/\b(I would like to|May I congratulate)\b/i.test(t))return"This sounds very formal for friends. Try “Congrats!” or “Well done!”";return""}
+function R(){
+ const st=S.step,A=$("#app"),k=S.tab;
+ let h='<div class="steps">'+["Choose","Plan","Practice","Check"].map((n,i)=>`<button data-a="go" data-i="${i}" class="${i===st?"on":""}">${i+1}. ${n}</button>`).join("")+"</div>";
+ if(st===0){
+  h+='<h2>Step 1: Choose two situations</h2><p>Pick one informal situation and one polite or formal situation. You can also write your own.</p>';
+  for(const k of ["inf","frm"]){
+   h+=`<h3 id="g-${k}" class="${S.warn&&!chosen(k)?"warn":""}">${NAME[k]}${S.warn&&!chosen(k)?" (please choose one)":""}</h3>`+K[k].map(i=>`<button class="sit ${S.pick[k]===i?"on":""}" data-a="pick" data-k="${k}" data-i="${i}"><span class="tag ${SITS[i][1]}">${SITS[i][1]}</span>${SITS[i][0]}</button>`).join("");
+   h+=`<button class="sit ${S.pick[k]==="own"?"on":""}" data-a="pick" data-k="${k}" data-i="own">✏️ Write my own situation</button>`;
+   if(S.pick[k]==="own")h+=`<input type="text" data-in="own" data-k="${k}" maxlength="140" placeholder="Example: Your friend learns to ride a bike." value="${esc(S.own[k])}">`}
+  h+=`<div class="hint ${chosen("inf")&&chosen("frm")?"":"warn"}" id="pstat">${pstat()}</div><div class="row"><button class="btn pri" data-a="go" data-i="1" id="nx">Next: Plan</button></div>`}
+ if(st===1||st===2){
+  h+=`<div class="tabs">${["inf","frm"].map(x=>`<button data-a="tab" data-k="${x}" class="${k===x?"on":""}">${x==="inf"?"Situation 1":"Situation 2"}: ${x==="inf"?"informal":"polite or formal"}</button>`).join("")}</div>`;
+  h+=`<div class="card"><span class="tag ${sitLvl(k)}">${sitLvl(k)}</span>${esc(sitText(k))}</div>`}
+ if(st===1){
+  h+='<h2>Step 2: Plan your script</h2><p>Write what each speaker says. Tap a sticker to add it to the box you are using. You can also drag it in. Change the words to make them yours.</p>';
+  h+=SL.map(s=>`<div class="slot ${s[1]} ${S.sc[k][s[0]].trim()?"full":""} ${S.warn&&!s[4]&&!S.sc[k][s[0]].trim()?"need":""}" id="s-${s[0]}"><span class="ck">✓ Done</span><h3><span class="who">${s[1]}</span>${s[2]}</h3><div class="hint">${s[3]}</div><textarea id="t-${s[0]}" data-in="sc" data-s="${s[0]}" placeholder="Speaker ${s[1]} says…">${esc(S.sc[k][s[0]])}</textarea><div class="hint warn" id="h-${s[0]}">${hint(k,S.sc[k][s[0]])}</div></div>`).join("");
+  h+=`<div class="row"><button data-a="go" data-i="0">Back</button><button class="btn pri" data-a="go" data-i="2" id="nx">Next: Practice</button></div><div class="hint" id="miss"></div>`;
+  h+='<div class="tray" id="tray"></div>'}
+ if(st===2){
+  h+='<h2>Step 3: Practice</h2><p>Read each line aloud. Tap a line when you are done with it. Then check the list before you record.</p>';
+  if(!full(k))h+=`<div class="card warn">Finish these boxes in Step 2 first: ${need(k).join(", ")}.</div>`;
+  const lines=SL.filter(s=>S.sc[k][s[0]].trim());
+  h+=lines.map((s,i)=>`<div class="bub ${s[1]} ${S.cur[k]===i?"cur":""} ${S.read[k][i]?"read":""}" data-a="line" data-i="${i}"><small>Speaker ${s[1]}</small>${esc(S.sc[k][s[0]])}</div>`).join("");
+  h+=`<div class="row"><button data-a="next">Next line ▶</button><button data-a="reset">Start again</button></div>`;
+  const t=secs();h+=`<div class="card"><h3>Time check</h3><div class="bar ${t>120?"over":""}"><i style="width:${Math.min(100,t/1.2)}%"></i></div><div class="hint ${t>120?"warn":""}">About ${t} seconds for both parts. The limit is 120 seconds.</div></div>`;
+  h+='<div class="card"><h3>Say it well</h3><div class="hint">Stress words like “so” and “really”. Let your voice go up and down. Smile, so your voice sounds friendly.</div></div>';
+  h+='<div class="card"><h3>Before you record</h3>'+CHK.map((c,i)=>`<label class="ck2"><input type="checkbox" data-in="chk" data-i="${i}" ${S.chk[i]?"checked":""}><span>${c}</span></label>`).join("")+"</div>";
+  h+=`<div class="row"><button data-a="go" data-i="1">Back</button><button class="btn pri" data-a="go" data-i="3">Next: Check</button></div>`}
+ if(st===3){
+  h+='<h2>Step 4: Feedback and reflection</h2><p>After you watch a video, answer these three questions. Use this card for your own video or for a classmate’s video.</p>';
+  h+=QS.map((q,i)=>`<div class="card"><h3>${i+1}. ${q}</h3><div class="opts">${["Yes","Almost","Not yet"].map(o=>`<button data-a="fb" data-i="${i}" data-o="${o}" class="${S.fb.q[i]===o?"on":""}">${o}</button>`).join("")}</div></div>`).join("");
+  h+=`<div class="card"><h3>One thing to improve</h3><input type="text" data-in="note" maxlength="160" value="${esc(S.fb.note)}" placeholder="Example: Say “so” with more energy."></div>`;
+  h+=`<div class="card"><h3>My reflection</h3><div class="hint">Which way of replying felt most natural? Whom will you congratulate or compliment this week?</div><textarea data-in="ref" placeholder="Write your answer here.">${esc(S.fb.ref)}</textarea></div>`;
+  h+=`<div class="row"><button data-a="go" data-i="2">Back</button><button class="btn pri" data-a="copy">Copy my script and card</button></div><div id="out"></div><div class="row"><button data-a="clear">Clear everything</button></div>`}
+ A.innerHTML=h;
+ if(st===1){tray();upd()}
+}
+function tray(){
+ const k=S.tab,cats=["open","cong","comp","ext","resp","wish"];
+ $("#tray").innerHTML=`<div class="hint">Stickers for: ${SL.find(s=>s[0]===S.act)[2]}</div><div class="tabs">${cats.map(c=>`<button data-a="cat" data-c="${c}" class="${S.cat===c?"on":""}">${CN[c]}</button>`).join("")}</div>`+ST[k][S.cat].map((t,i)=>`<span class="st" draggable="true" data-a="st" data-t="${esc(t)}" style="--r:${i%2?1.6:-1.6}deg">${esc(t)}</span>`).join("")}
+function upd(){
+ const k=S.tab;
+ SL.forEach(s=>{const v=S.sc[k][s[0]];$("#s-"+s[0]).classList.toggle("full",!!v.trim());$("#s-"+s[0]).classList.toggle("need",!!S.warn&&!s[4]&&!v.trim());$("#h-"+s[0]).textContent=hint(k,v)});
+ const m=need(k),o=k==="inf"?"frm":"inf",e=$("#miss");if(e)e.textContent=m.length?"Still to do here: "+m.join(", ")+".":full(o)?"Great! Both scripts are ready. Tap Next.":"This script is ready. Now switch to "+(o==="inf"?"Situation 1":"Situation 2")+" and write that one too."}
+function ins(txt,ta){
+ ta=ta||$("#t-"+S.act);if(!ta)return;
+ ta.value+=(ta.value&&!/\s$/.test(ta.value)?" ":"")+txt;ta.dispatchEvent(new Event("input",{bubbles:true}));ta.focus()}
+function out(){
+ const L=k=>"Situation: "+sitText(k)+" ("+sitLvl(k)+")\n"+SL.filter(s=>S.sc[k][s[0]].trim()).map(s=>"Speaker "+s[1]+": "+S.sc[k][s[0]]).join("\n");
+ return "MY ROLE-PLAY\n\n"+L("inf")+"\n\n"+L("frm")+"\n\nFEEDBACK CARD\n"+QS.map((q,i)=>(i+1)+". "+q+" "+(S.fb.q[i]||"-")).join("\n")+"\nOne thing to improve: "+(S.fb.note||"-")+"\nReflection: "+(S.fb.ref||"-")}
+function go(i){
+ S.warn=0;
+ if(i>=1&&!(chosen("inf")&&chosen("frm"))){S.step=0;S.warn=1;save();R();const g=$("#g-"+(chosen("inf")?"frm":"inf"));if(g)g.scrollIntoView({behavior:"smooth",block:"center"});return}
+ if(i===2){const kk=["inf","frm"].find(x=>need(x).length);if(kk){S.step=1;S.tab=kk;S.warn=1;save();R();const f=SL.find(s=>!s[4]&&!S.sc[kk][s[0]].trim()),t=f&&$("#t-"+f[0]);if(t){t.scrollIntoView({behavior:"smooth",block:"center"});t.focus()}return}}
+ S.step=i;save();R();scrollTo(0,0)}
+function fresh(){return{step:0,pick:{inf:null,frm:null},own:{inf:"",frm:""},tab:"inf",act:"core",cat:"cong",sc:{inf:blank(),frm:blank()},cur:{inf:-1,frm:-1},read:{inf:{},frm:{}},chk:{},fb:{q:[null,null,null],note:"",ref:""},warn:0}}
+$("#app").addEventListener("click",e=>{
+ const t=e.target.closest("[data-a]");if(!t)return;const a=t.dataset.a,k=S.tab;
+ if(a==="go")go(+t.dataset.i)
+ else if(a==="pick"){S.pick[t.dataset.k]=t.dataset.i==="own"?"own":+t.dataset.i;save();R()}
+ else if(a==="tab"){S.tab=t.dataset.k;save();R()}
+ else if(a==="cat"){S.cat=t.dataset.c;tray()}
+ else if(a==="st"){t.classList.remove("pop");void t.offsetWidth;t.classList.add("pop");ins(t.dataset.t)}
+ else if(a==="line"){const i=+t.dataset.i;S.read[k][i]=!S.read[k][i];S.cur[k]=i;save();R()}
+ else if(a==="next"){const n=SL.filter(s=>S.sc[k][s[0]].trim()).length;if(S.cur[k]>=0)S.read[k][S.cur[k]]=true;S.cur[k]=Math.min(n-1,S.cur[k]+1);save();R()}
+ else if(a==="reset"){S.cur[k]=-1;S.read[k]={};save();R()}
+ else if(a==="fb"){S.fb.q[+t.dataset.i]=t.dataset.o;save();R()}
+ else if(a==="copy"){const x=out();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>{$("#out").innerHTML='<div class="hint">Copied! Paste it into your notes or send it to your teacher.</div>'}).catch(()=>{$("#out").innerHTML="<pre>"+esc(x)+"</pre>"})}
+ else if(a==="clear"){if(!t.dataset.sure){t.dataset.sure=1;t.textContent="Tap again to clear everything";return}try{localStorage.removeItem("rps1")}catch(e){}S=fresh();R();scrollTo(0,0)}
+});
+$("#app").addEventListener("input",e=>{
+ const t=e.target,d=t.dataset.in;if(!d)return;
+ if(d==="own"){S.own[t.dataset.k]=t.value;const ps=$("#pstat");if(ps){ps.textContent=pstat();ps.classList.toggle("warn",!(chosen("inf")&&chosen("frm")))}}
+ else if(d==="sc"){S.sc[S.tab][t.dataset.s]=t.value;upd()}
+ else if(d==="chk")S.chk[t.dataset.i]=t.checked;
+ else if(d==="note")S.fb.note=t.value;else if(d==="ref")S.fb.ref=t.value;
+ save()});
+$("#app").addEventListener("focusin",e=>{const t=e.target;if(t.dataset.in==="sc"){S.act=t.dataset.s;S.cat=CAT[S.act][0];tray()}});
+$("#app").addEventListener("dragstart",e=>{const t=e.target.closest(".st");if(t)e.dataTransfer.setData("text/plain",t.dataset.t)});
+$("#app").addEventListener("dragover",e=>{if(e.target.matches("textarea"))e.preventDefault()});
+$("#app").addEventListener("drop",e=>{if(e.target.matches("textarea")){e.preventDefault();ins(e.dataTransfer.getData("text/plain"),e.target)}});
+R();
+</script></body></html>
